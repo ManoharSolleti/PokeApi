@@ -4,6 +4,13 @@ import Pagination from "./Pagination";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  position: absolute;
+  top: calc(50% - 100px);
+  left: calc(50% - 10px);
+`;
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -42,21 +49,22 @@ function App() {
 
   if (loading)
     return (
-      <div className='Loader'>
-      <Loader 
-        type="Triangle"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        timeout={3000}
-      />
-      </div>
+      <StyledDiv>
+        <Loader
+          type="Triangle"
+          color="#ff0000"
+          height={100}
+          width={100}
+          timeout={3000}
+        />
+      </StyledDiv>
     );
 
   return (
     <>
       <PokemonList className="PokemonList" pokemon={pokemon} />
-      <Pagination className="Pagination"
+      <Pagination
+        className="Pagination"
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
       />
